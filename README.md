@@ -101,6 +101,24 @@ MarineGuard-V2/
 ├── start.sh
 ├── .gitignore
 └── README.md
+
+## 📸 Screenshots
+
+### System Dashboard
+![MarineGuard System Dashboard](docs/dashboard.png)
+
+### Live Ship Tracking
+![MarineGuard Live Ship Tracking](docs/live-tracking.png)
+
+### Passenger Ship Tracking
+![MarineGuard Passenger Tracking](docs/passenger-tracking.png)
+
+### C2 Radar Surveillance & SAR Classification
+![MarineGuard C2 Radar Surveillance](docs/c2-radar-surveillance.png)
+
+### Blockchain Security Ledger
+![MarineGuard Blockchain Ledger](docs/blockchain-ledger.png)
+
 ```
 
 ## Tech stack
@@ -185,8 +203,8 @@ backend/app/ml/artifacts/normalization.npz
 ### 1. Clone
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/marineguard-v2.git
-cd marineguard-v2
+git clone https://github.com/Supraja73/MarineGuard-V2.git
+cd MarineGuard-V2
 ```
 
 ### 2. Create the Python environment
