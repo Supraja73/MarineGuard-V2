@@ -1,0 +1,33 @@
+fastapi==0.137.2
+uvicorn[standard]==0.49.0
+pydantic==2.13.4
+pydantic-settings==2.14.2
+python-dotenv==1.2.2
+cryptography==46.0.6
+bcrypt==5.0.0
+websockets==16.0
+
+# Database: PostgreSQL via SQLAlchemy 2.0 (async) + Alembic migrations.
+# asyncpg is used by the running application (async engine); psycopg
+# (the sync, v3 driver) is used by Alembic, which runs migrations
+# synchronously - see app/config/settings.py's sync_database_url.
+greenlet==3.1.1
+sqlalchemy==2.0.51
+alembic==1.18.4
+asyncpg==0.31.0
+psycopg[binary]==3.3.4
+httpx==0.28.1
+
+# Ocean routing: computes realistic sea-lane paths (great-circle segments
+# routed through a real global maritime network, around land/islands)
+# used by app/routers/ocean_route.py to replace the old hardcoded
+# chokepoint waypoint logic on the frontend.
+searoute==1.6.0
+geojson==3.3.0
+
+# Machine Learning: PyTorch SAR Iceberg vs Vessel Classifier
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+

@@ -1,0 +1,104 @@
+/* =========================================================================
+   HAZARD PAINTER TOOLBOX + PoET TIME-SERIES
+   Right-side floating panel on the tracking map; lets the operator drop
+   cyclones / storms / heavy-wind zones on the map and clear them again.
+   ========================================================================= */
+
+.hazard-toolbox {
+  position: absolute;
+  top: 96px;
+  right: 12px;
+  z-index: 900;
+  background: rgba(15, 23, 42, 0.94);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 160px;
+  color: #E2E8F0;
+  font-family: inherit;
+  transition: padding 0.15s ease, min-width 0.15s ease;
+}
+.hazard-toolbox-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #94A3B8;
+  margin-bottom: 2px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.hazard-toolbox-body { display: flex; flex-direction: column; gap: 6px; }
+.hazard-toolbox.collapsed { min-width: 0; gap: 0; }
+.hazard-toolbox.collapsed .hazard-toolbox-body { display: none; }
+.hazard-toolbox.collapsed .hazard-toolbox-title { margin-bottom: 0; }
+.hazard-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(30, 41, 59, 0.7);
+  color: #E2E8F0;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+.hazard-btn:hover { background: rgba(51, 65, 85, 0.9); }
+.hazard-btn.active {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  border-color: #ef4444;
+  color: #fff;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.35);
+}
+.hazard-btn .hz-icon { font-size: 15px; }
+.hazard-btn.hz-storm.active   { background: linear-gradient(135deg,#f59e0b,#b45309); border-color:#f59e0b; box-shadow:0 0 0 2px rgba(245,158,11,.35);}
+.hazard-btn.hz-wind.active    { background: linear-gradient(135deg,#0ea5e9,#0369a1); border-color:#0ea5e9; box-shadow:0 0 0 2px rgba(14,165,233,.35);}
+.hazard-btn.hz-ship.active    { background: linear-gradient(135deg,#22c55e,#15803d); border-color:#22c55e; box-shadow:0 0 0 2px rgba(34,197,94,.35);}
+.hazard-btn.hz-clear {
+  margin-top: 4px;
+  background: rgba(71,85,105,0.6);
+}
+.hazard-btn.hz-clear:hover { background: #475569; }
+
+.hazard-hint {
+  font-size: 10.5px;
+  color: #94A3B8;
+  padding: 4px 2px 0 2px;
+  border-top: 1px dashed rgba(148,163,184,0.2);
+  margin-top: 4px;
+}
+
+/* When a hazard tool is armed, the map cursor becomes a crosshair. */
+.tracking-map-wrap.hazard-arming .leaflet-container,
+.tracking-map-wrap.hazard-arming .leaflet-container * {
+  cursor: crosshair !important;
+}
+
+/* Pulsing hazard marker overlay */
+@keyframes hz-pulse {
+  0%   { transform: scale(0.9); opacity: 0.9; }
+  70%  { transform: scale(1.15); opacity: 0.15; }
+  100% { transform: scale(0.9); opacity: 0.9; }
+}
+.hz-marker-dot {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.25);
+  animation: hz-pulse 1.6s infinite;
+}
+.hz-marker-dot.hz-cyclone { background: radial-gradient(circle, #ef4444, #7f1d1d); }
+.hz-marker-dot.hz-storm   { background: radial-gradient(circle, #f59e0b, #78350f); }
+.hz-marker-dot.hz-wind    { background: radial-gradient(circle, #0ea5e9, #0c4a6e); }
